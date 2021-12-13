@@ -1,0 +1,814 @@
+{
+  "contractName": "IGroupChat",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "sendMessage",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "member",
+          "type": "address"
+        }
+      ],
+      "name": "isBanned",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "member",
+          "type": "address"
+        }
+      ],
+      "name": "has",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity ^0.4.24;\n\ninterface IGroupChat {\n    /**\n     * Send Message to a chat\n     * The formation of message need to reference: https://github.com/CPChain/cpchain-dapps-message#methods\n     * Emits a {SendMessage} event\n     */\n    function sendMessage(uint id, string message) external;\n\n    /**\n     * Check a member whether is banned\n     */\n    function isBanned(uint id, address member) external view returns(bool);\n\n    /**\n     * Check a group if has this member\n     */\n    function has(uint id, address member) external view returns(bool);\n}\n",
+  "sourcePath": "/Users/liaojinlong/Workspace/CPChain/cpchain-dapps-red-packet/contracts/interfaces/IGroupChat.sol",
+  "ast": {
+    "absolutePath": "/Users/liaojinlong/Workspace/CPChain/cpchain-dapps-red-packet/contracts/interfaces/IGroupChat.sol",
+    "exportedSymbols": {
+      "IGroupChat": [
+        858
+      ]
+    },
+    "id": 859,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 832,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 858,
+        "linearizedBaseContracts": [
+          858
+        ],
+        "name": "IGroupChat",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": "Send Message to a chat\nThe formation of message need to reference: https://github.com/CPChain/cpchain-dapps-message#methods\nEmits a {SendMessage} event",
+            "id": 839,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "sendMessage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 837,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 834,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 839,
+                  "src": "263:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 833,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "263:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 836,
+                  "name": "message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 839,
+                  "src": "272:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 835,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "262:25:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 838,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "296:0:2"
+            },
+            "scope": 858,
+            "src": "242:55:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "Check a member whether is banned",
+            "id": 848,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "isBanned",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 844,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 841,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 848,
+                  "src": "377:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 840,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "377:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 843,
+                  "name": "member",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 848,
+                  "src": "386:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 842,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "386:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "376:25:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 847,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 846,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 848,
+                  "src": "424:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 845,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "424:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "423:6:2"
+            },
+            "scope": 858,
+            "src": "359:71:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "Check a group if has this member",
+            "id": 857,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "has",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 853,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 850,
+                  "name": "id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 857,
+                  "src": "505:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 849,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "505:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 852,
+                  "name": "member",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 857,
+                  "src": "514:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 851,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "514:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "504:25:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 856,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 855,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 857,
+                  "src": "552:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 854,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "552:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "551:6:2"
+            },
+            "scope": 858,
+            "src": "492:66:2",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "external"
+          }
+        ],
+        "scope": 859,
+        "src": "26:534:2"
+      }
+    ],
+    "src": "0:561:2"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/liaojinlong/Workspace/CPChain/cpchain-dapps-red-packet/contracts/interfaces/IGroupChat.sol",
+      "exportedSymbols": {
+        "IGroupChat": [
+          858
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 832,
+        "name": "PragmaDirective",
+        "src": "0:24:2"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            858
+          ],
+          "name": "IGroupChat",
+          "scope": 859
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "constant": false,
+              "documentation": "Send Message to a chat\nThe formation of message need to reference: https://github.com/CPChain/cpchain-dapps-message#methods\nEmits a {SendMessage} event",
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "sendMessage",
+              "payable": false,
+              "scope": 858,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "id",
+                      "scope": 839,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 833,
+                        "name": "ElementaryTypeName",
+                        "src": "263:4:2"
+                      }
+                    ],
+                    "id": 834,
+                    "name": "VariableDeclaration",
+                    "src": "263:7:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "message",
+                      "scope": 839,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 835,
+                        "name": "ElementaryTypeName",
+                        "src": "272:6:2"
+                      }
+                    ],
+                    "id": 836,
+                    "name": "VariableDeclaration",
+                    "src": "272:14:2"
+                  }
+                ],
+                "id": 837,
+                "name": "ParameterList",
+                "src": "262:25:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 838,
+                "name": "ParameterList",
+                "src": "296:0:2"
+              }
+            ],
+            "id": 839,
+            "name": "FunctionDefinition",
+            "src": "242:55:2"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": true,
+              "documentation": "Check a member whether is banned",
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "isBanned",
+              "payable": false,
+              "scope": 858,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "id",
+                      "scope": 848,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 840,
+                        "name": "ElementaryTypeName",
+                        "src": "377:4:2"
+                      }
+                    ],
+                    "id": 841,
+                    "name": "VariableDeclaration",
+                    "src": "377:7:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "member",
+                      "scope": 848,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 842,
+                        "name": "ElementaryTypeName",
+                        "src": "386:7:2"
+                      }
+                    ],
+                    "id": 843,
+                    "name": "VariableDeclaration",
+                    "src": "386:14:2"
+                  }
+                ],
+                "id": 844,
+                "name": "ParameterList",
+                "src": "376:25:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 848,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 845,
+                        "name": "ElementaryTypeName",
+                        "src": "424:4:2"
+                      }
+                    ],
+                    "id": 846,
+                    "name": "VariableDeclaration",
+                    "src": "424:4:2"
+                  }
+                ],
+                "id": 847,
+                "name": "ParameterList",
+                "src": "423:6:2"
+              }
+            ],
+            "id": 848,
+            "name": "FunctionDefinition",
+            "src": "359:71:2"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "constant": true,
+              "documentation": "Check a group if has this member",
+              "implemented": false,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "has",
+              "payable": false,
+              "scope": 858,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "id",
+                      "scope": 857,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 849,
+                        "name": "ElementaryTypeName",
+                        "src": "505:4:2"
+                      }
+                    ],
+                    "id": 850,
+                    "name": "VariableDeclaration",
+                    "src": "505:7:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "member",
+                      "scope": 857,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 851,
+                        "name": "ElementaryTypeName",
+                        "src": "514:7:2"
+                      }
+                    ],
+                    "id": 852,
+                    "name": "VariableDeclaration",
+                    "src": "514:14:2"
+                  }
+                ],
+                "id": 853,
+                "name": "ParameterList",
+                "src": "504:25:2"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 857,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 854,
+                        "name": "ElementaryTypeName",
+                        "src": "552:4:2"
+                      }
+                    ],
+                    "id": 855,
+                    "name": "VariableDeclaration",
+                    "src": "552:4:2"
+                  }
+                ],
+                "id": 856,
+                "name": "ParameterList",
+                "src": "551:6:2"
+              }
+            ],
+            "id": 857,
+            "name": "FunctionDefinition",
+            "src": "492:66:2"
+          }
+        ],
+        "id": 858,
+        "name": "ContractDefinition",
+        "src": "26:534:2"
+      }
+    ],
+    "id": 859,
+    "name": "SourceUnit",
+    "src": "0:561:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.25+commit.59dbf8f1.Linux.g++"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-12-13T10:06:02.565Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {
+      "has(uint256,address)": {
+        "notice": "Check a group if has this member"
+      },
+      "isBanned(uint256,address)": {
+        "notice": "Check a member whether is banned"
+      },
+      "sendMessage(uint256,string)": {
+        "notice": "Send Message to a chat The formation of message need to reference: https://github.com/CPChain/cpchain-dapps-message#methods Emits a {SendMessage} event"
+      }
+    }
+  }
+}
