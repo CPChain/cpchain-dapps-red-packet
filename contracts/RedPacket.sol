@@ -131,7 +131,7 @@ contract RedPacket is IRedPacket {
         bool sent = false;
         if (groupChatAddress != address(0x0)) {
             require(groupchatInstance.has(group_id, msg.sender), "You are not in this group");
-            require(groupchatInstance.isBanned(group_id, msg.sender), "You have been banned");
+            require(!groupchatInstance.isBanned(group_id, msg.sender), "You have been banned");
             // message
             string memory _id = uintToString(packet_seq);
             string memory msg0 = "{\"message\":{\"seq\":";
@@ -155,7 +155,7 @@ contract RedPacket is IRedPacket {
         require(!packets[packet_id].grabbed[msg.sender], "You have grabbed");
         if (groupChatAddress != address(0x0)) {
             require(groupchatInstance.has(packets[packet_id].group_id, msg.sender), "You are not in this group");
-            require(groupchatInstance.isBanned(packets[packet_id].group_id, msg.sender), "You have been banned");
+            require(!groupchatInstance.isBanned(packets[packet_id].group_id, msg.sender), "You have been banned");
         }
         uint256 random = packets[packet_id].remains;
         if (packets[packet_id].remain_cnt > 1) {
