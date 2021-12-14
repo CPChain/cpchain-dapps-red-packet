@@ -168,7 +168,7 @@ contract RedPacket is IRedPacket {
         packets[packet_id].remain_cnt -= 1;
         packets[packet_id].grabbed[msg.sender] = true;
         msg.sender.transfer(random);
-        emit GrabRedPacket(packets[packet_id].group_id, packet_id, random);
+        emit GrabRedPacket(packets[packet_id].group_id, packet_id, msg.sender, random);
     }
 
     /**

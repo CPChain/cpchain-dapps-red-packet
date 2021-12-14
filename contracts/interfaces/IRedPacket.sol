@@ -1,8 +1,8 @@
 pragma solidity ^0.4.24;
 
 interface IRedPacket {
-    event CreateRedPacket(uint indexed group_id, uint indexed packed_id, address sender, uint256 amount, uint count, bool msg_sent);
-    event GrabRedPacket(uint indexed group_id, uint indexed packet_id, uint256 amount);
+    event CreateRedPacket(uint indexed group_id, uint indexed packet_id, address sender, uint256 amount, uint count, bool msg_sent);
+    event GrabRedPacket(uint indexed group_id, uint indexed packet_id, address receiver, uint256 amount);
     event Refund(uint indexed packet_id, uint256 remains);
 
     /**
