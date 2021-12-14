@@ -90,7 +90,7 @@ contract RedPacket is IRedPacket {
     }
 
     function setPeriod(uint256 new_period) public onlyEnabled onlyOwner {
-        require(new_period > 1 minutes, "The period should greater than 1 minute");
+        require(new_period > 1 seconds, "The period should greater than 1 second");
         period = new_period;
     }
 
@@ -145,10 +145,10 @@ contract RedPacket is IRedPacket {
     }
 
     /**
-     * Grap a red packet.
-     * Emits {GrapRedPacket} event
+     * Grab a red packet.
+     * Emits {GrabRedPacket} event
      */
-    function grapRedPacket(uint packet_id) external {
+    function grabRedPacket(uint packet_id) external {
         require(packets[packet_id].existed, "This packet not found");
         require(packets[packet_id].remains > 0, "This packet is empty now");
         require(packets[packet_id].remain_cnt > 0, "This packet is empty now");
@@ -168,7 +168,7 @@ contract RedPacket is IRedPacket {
         packets[packet_id].remain_cnt -= 1;
         packets[packet_id].grabbed[msg.sender] = true;
         msg.sender.transfer(random);
-        emit GrapRedPacket(packets[packet_id].group_id, packet_id, random);
+        emit GrabRedPacket(packets[packet_id].group_id, packet_id, random);
     }
 
     /**

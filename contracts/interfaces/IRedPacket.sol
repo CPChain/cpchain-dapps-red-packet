@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 interface IRedPacket {
     event CreateRedPacket(uint indexed group_id, uint indexed packed_id, address sender, uint256 amount, uint count, bool msg_sent);
-    event GrapRedPacket(uint indexed group_id, uint indexed packet_id, uint256 amount);
+    event GrabRedPacket(uint indexed group_id, uint indexed packet_id, uint256 amount);
     event Refund(uint indexed packet_id, uint256 remains);
 
     /**
@@ -14,10 +14,10 @@ interface IRedPacket {
     function createRedPacket(uint group_id, uint count) external payable returns (uint);
 
     /**
-     * Grap a red packet.
-     * Emits {GrapRedPacket} event
+     * Grab a red packet.
+     * Emits {GrabRedPacket} event
      */
-    function grapRedPacket(uint packet_id) external;
+    function grabRedPacket(uint packet_id) external;
 
     /**
      * Refund after specify period if the red packet still remain.

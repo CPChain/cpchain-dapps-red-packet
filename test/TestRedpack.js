@@ -15,12 +15,12 @@ contract("Redpack", (accounts) => {
 
         // 抢红包
         for(let i = 1; i < 6; i++) {
-            await instance.grapRedPacket(1, {from: accounts[i]})
+            await instance.grabRedPacket(1, {from: accounts[i]})
         }
 
         // 再抢红包，报错，已抢光
         try {
-            await instance.grapRedPacket(1, {from: accounts[6]})
+            await instance.grabRedPacket(1, {from: accounts[6]})
             assert.fail()
         } catch(error) {
             assert.ok(error.toString().includes("This packet is empty now."));
