@@ -11,7 +11,7 @@ contract("Redpack", (accounts) => {
         const instance = await Redpacket.deployed()
         // 发红包
         const cpc_10 = web3.utils.toWei(String(10), "ether")
-        await instance.createRedPacket(0, 5, {from: accounts[0], value: cpc_10})
+        await instance.createRedPacket(0, 5, "Hello, world", {from: accounts[0], value: cpc_10})
 
         // 抢红包
         for(let i = 1; i < 6; i++) {

@@ -21,6 +21,11 @@
         },
         {
           "indexed": false,
+          "name": "bless",
+          "type": "string"
+        },
+        {
+          "indexed": false,
           "name": "amount",
           "type": "uint256"
         },
@@ -92,6 +97,10 @@
         {
           "name": "count",
           "type": "uint256"
+        },
+        {
+          "name": "bless",
+          "type": "string"
         }
       ],
       "name": "createRedPacket",
@@ -139,20 +148,20 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.24;\n\ninterface IRedPacket {\n    event CreateRedPacket(uint indexed group_id, uint indexed packet_id, address sender, uint256 amount, uint count, bool msg_sent);\n    event GrabRedPacket(uint indexed group_id, uint indexed packet_id, address receiver, uint256 amount);\n    event Refund(uint indexed packet_id, uint256 remains);\n\n    /**\n     * Create a red packet. Specify the group_id and the count of sub red packet.\n     * This function will send an application message in the group chat.\n     * Emits {CreateRedPacket} event\n     * Returns packet ID.\n     */\n    function createRedPacket(uint group_id, uint count) external payable returns (uint);\n\n    /**\n     * Grab a red packet.\n     * Emits {GrabRedPacket} event\n     */\n    function grabRedPacket(uint packet_id) external;\n\n    /**\n     * Refund after specify period if the red packet still remain.\n     * Emits {Refund} event\n     */\n    function refund(uint packet_id) external;\n\n}\n",
+  "source": "pragma solidity ^0.4.24;\n\ninterface IRedPacket {\n    event CreateRedPacket(uint indexed group_id, uint indexed packet_id, address sender, string bless, uint256 amount, uint count, bool msg_sent);\n    event GrabRedPacket(uint indexed group_id, uint indexed packet_id, address receiver, uint256 amount);\n    event Refund(uint indexed packet_id, uint256 remains);\n\n    /**\n     * Create a red packet. Specify the group_id and the count of sub red packet.\n     * This function will send an application message in the group chat.\n     * Emits {CreateRedPacket} event\n     * Returns packet ID.\n     */\n    function createRedPacket(uint group_id, uint count, string bless) external payable returns (uint);\n\n    /**\n     * Grab a red packet.\n     * Emits {GrabRedPacket} event\n     */\n    function grabRedPacket(uint packet_id) external;\n\n    /**\n     * Refund after specify period if the red packet still remain.\n     * Emits {Refund} event\n     */\n    function refund(uint packet_id) external;\n\n}\n",
   "sourcePath": "/Users/liaojinlong/Workspace/CPChain/cpchain-dapps-red-packet/contracts/interfaces/IRedPacket.sol",
   "ast": {
-    "absolutePath": "/Users/liaojinlong/Workspace/CPChain/cpchain-dapps-red-packet/contracts/interfaces/IRedPacket.sol",
+    "absolutePath": "project:/contracts/interfaces/IRedPacket.sol",
     "exportedSymbols": {
       "IRedPacket": [
-        879
+        899
       ]
     },
-    "id": 880,
+    "id": 900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 829,
+        "id": 845,
         "literals": [
           "solidity",
           "^",
@@ -168,9 +177,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 879,
+        "id": 899,
         "linearizedBaseContracts": [
-          879
+          899
         ],
         "name": "IRedPacket",
         "nodeType": "ContractDefinition",
@@ -178,20 +187,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 843,
+            "id": 861,
             "name": "CreateRedPacket",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 842,
+              "id": 860,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 831,
+                  "id": 847,
                   "indexed": true,
                   "name": "group_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 843,
+                  "scope": 861,
                   "src": "75:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -200,7 +209,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 830,
+                    "id": 846,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "75:4:2",
@@ -214,11 +223,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 833,
+                  "id": 849,
                   "indexed": true,
                   "name": "packet_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 843,
+                  "scope": 861,
                   "src": "98:22:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -227,7 +236,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 832,
+                    "id": 848,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "98:4:2",
@@ -241,11 +250,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 835,
+                  "id": 851,
                   "indexed": false,
                   "name": "sender",
                   "nodeType": "VariableDeclaration",
-                  "scope": 843,
+                  "scope": 861,
                   "src": "122:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -254,7 +263,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 834,
+                    "id": 850,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "122:7:2",
@@ -268,231 +277,39 @@
                 },
                 {
                   "constant": false,
-                  "id": 837,
+                  "id": 853,
                   "indexed": false,
-                  "name": "amount",
+                  "name": "bless",
                   "nodeType": "VariableDeclaration",
-                  "scope": 843,
-                  "src": "138:14:2",
+                  "scope": 861,
+                  "src": "138:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
                   },
                   "typeName": {
-                    "id": 836,
-                    "name": "uint256",
+                    "id": 852,
+                    "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "138:7:2",
+                    "src": "138:6:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
                     }
                   },
                   "value": null,
                   "visibility": "internal"
                 },
-                {
-                  "constant": false,
-                  "id": 839,
-                  "indexed": false,
-                  "name": "count",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 843,
-                  "src": "154:10:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 838,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "154:4:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 841,
-                  "indexed": false,
-                  "name": "msg_sent",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 843,
-                  "src": "166:13:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_bool",
-                    "typeString": "bool"
-                  },
-                  "typeName": {
-                    "id": 840,
-                    "name": "bool",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "166:4:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "74:106:2"
-            },
-            "src": "53:128:2"
-          },
-          {
-            "anonymous": false,
-            "documentation": null,
-            "id": 853,
-            "name": "GrabRedPacket",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 852,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 845,
-                  "indexed": true,
-                  "name": "group_id",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 853,
-                  "src": "206:21:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 844,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "206:4:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 847,
-                  "indexed": true,
-                  "name": "packet_id",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 853,
-                  "src": "229:22:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 846,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "229:4:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 849,
-                  "indexed": false,
-                  "name": "receiver",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 853,
-                  "src": "253:16:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_address",
-                    "typeString": "address"
-                  },
-                  "typeName": {
-                    "id": 848,
-                    "name": "address",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "253:7:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 851,
-                  "indexed": false,
-                  "name": "amount",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 853,
-                  "src": "271:14:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 850,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "271:7:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "205:81:2"
-            },
-            "src": "186:101:2"
-          },
-          {
-            "anonymous": false,
-            "documentation": null,
-            "id": 859,
-            "name": "Refund",
-            "nodeType": "EventDefinition",
-            "parameters": {
-              "id": 858,
-              "nodeType": "ParameterList",
-              "parameters": [
                 {
                   "constant": false,
                   "id": 855,
-                  "indexed": true,
-                  "name": "packet_id",
+                  "indexed": false,
+                  "name": "amount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 859,
-                  "src": "305:22:2",
+                  "scope": 861,
+                  "src": "152:14:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -501,9 +318,9 @@
                   },
                   "typeName": {
                     "id": 854,
-                    "name": "uint",
+                    "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "305:4:2",
+                    "src": "152:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -516,10 +333,10 @@
                   "constant": false,
                   "id": 857,
                   "indexed": false,
-                  "name": "remains",
+                  "name": "count",
                   "nodeType": "VariableDeclaration",
-                  "scope": 859,
-                  "src": "329:15:2",
+                  "scope": 861,
+                  "src": "168:10:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -528,54 +345,9 @@
                   },
                   "typeName": {
                     "id": 856,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "329:7:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "304:41:2"
-            },
-            "src": "292:54:2"
-          },
-          {
-            "body": null,
-            "documentation": "Create a red packet. Specify the group_id and the count of sub red packet.\nThis function will send an application message in the group chat.\nEmits {CreateRedPacket} event\nReturns packet ID.",
-            "id": 868,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "createRedPacket",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 864,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 861,
-                  "name": "group_id",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 868,
-                  "src": "611:13:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 860,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "611:4:2",
+                    "src": "168:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -586,11 +358,54 @@
                 },
                 {
                   "constant": false,
-                  "id": 863,
-                  "name": "count",
+                  "id": 859,
+                  "indexed": false,
+                  "name": "msg_sent",
                   "nodeType": "VariableDeclaration",
-                  "scope": 868,
-                  "src": "626:10:2",
+                  "scope": 861,
+                  "src": "180:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 858,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "180:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "74:120:2"
+            },
+            "src": "53:142:2"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 871,
+            "name": "GrabRedPacket",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 870,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 863,
+                  "indexed": true,
+                  "name": "group_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 871,
+                  "src": "220:21:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -601,7 +416,7 @@
                     "id": 862,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "626:4:2",
+                    "src": "220:4:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -609,71 +424,15 @@
                   },
                   "value": null,
                   "visibility": "internal"
-                }
-              ],
-              "src": "610:27:2"
-            },
-            "payable": true,
-            "returnParameters": {
-              "id": 867,
-              "nodeType": "ParameterList",
-              "parameters": [
+                },
                 {
                   "constant": false,
-                  "id": 866,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 868,
-                  "src": "664:4:2",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 865,
-                    "name": "uint",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "664:4:2",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "663:6:2"
-            },
-            "scope": 879,
-            "src": "586:84:2",
-            "stateMutability": "payable",
-            "superFunction": null,
-            "visibility": "external"
-          },
-          {
-            "body": null,
-            "documentation": "Grab a red packet.\nEmits {GrabRedPacket} event",
-            "id": 873,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "grabRedPacket",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 871,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 870,
+                  "id": 865,
+                  "indexed": true,
                   "name": "packet_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 873,
-                  "src": "776:14:2",
+                  "scope": 871,
+                  "src": "243:22:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -681,10 +440,64 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 869,
+                    "id": 864,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "776:4:2",
+                    "src": "243:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 867,
+                  "indexed": false,
+                  "name": "receiver",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 871,
+                  "src": "267:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 866,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "267:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 869,
+                  "indexed": false,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 871,
+                  "src": "285:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 868,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "285:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -694,42 +507,55 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "775:16:2"
+              "src": "219:81:2"
             },
-            "payable": false,
-            "returnParameters": {
-              "id": 872,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "800:0:2"
-            },
-            "scope": 879,
-            "src": "753:48:2",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "external"
+            "src": "200:101:2"
           },
           {
-            "body": null,
-            "documentation": "Refund after specify period if the red packet still remain.\nEmits {Refund} event",
-            "id": 878,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "refund",
-            "nodeType": "FunctionDefinition",
+            "anonymous": false,
+            "documentation": null,
+            "id": 877,
+            "name": "Refund",
+            "nodeType": "EventDefinition",
             "parameters": {
               "id": 876,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 875,
+                  "id": 873,
+                  "indexed": true,
                   "name": "packet_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 878,
-                  "src": "934:14:2",
+                  "scope": 877,
+                  "src": "319:22:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 872,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "319:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 875,
+                  "indexed": false,
+                  "name": "remains",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 877,
+                  "src": "343:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -738,9 +564,9 @@
                   },
                   "typeName": {
                     "id": 874,
-                    "name": "uint",
+                    "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "934:4:2",
+                    "src": "343:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -750,34 +576,270 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "933:16:2"
+              "src": "318:41:2"
+            },
+            "src": "306:54:2"
+          },
+          {
+            "body": null,
+            "documentation": "Create a red packet. Specify the group_id and the count of sub red packet.\nThis function will send an application message in the group chat.\nEmits {CreateRedPacket} event\nReturns packet ID.",
+            "id": 888,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "createRedPacket",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 884,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 879,
+                  "name": "group_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 888,
+                  "src": "625:13:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 878,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "625:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 881,
+                  "name": "count",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 888,
+                  "src": "640:10:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 880,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "640:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 883,
+                  "name": "bless",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 888,
+                  "src": "652:12:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_calldata_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 882,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "652:6:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "624:41:2"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 887,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 886,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 888,
+                  "src": "692:4:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 885,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "692:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "691:6:2"
+            },
+            "scope": 899,
+            "src": "600:98:2",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "Grab a red packet.\nEmits {GrabRedPacket} event",
+            "id": 893,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "grabRedPacket",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 891,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 890,
+                  "name": "packet_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 893,
+                  "src": "804:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 889,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "804:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "803:16:2"
             },
             "payable": false,
             "returnParameters": {
-              "id": 877,
+              "id": 892,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "958:0:2"
+              "src": "828:0:2"
             },
-            "scope": 879,
-            "src": "918:41:2",
+            "scope": 899,
+            "src": "781:48:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": "Refund after specify period if the red packet still remain.\nEmits {Refund} event",
+            "id": 898,
+            "implemented": false,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "refund",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 896,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 895,
+                  "name": "packet_id",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 898,
+                  "src": "962:14:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 894,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "962:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "961:16:2"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 897,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "986:0:2"
+            },
+            "scope": 899,
+            "src": "946:41:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 880,
-        "src": "26:936:2"
+        "scope": 900,
+        "src": "26:964:2"
       }
     ],
-    "src": "0:963:2"
+    "src": "0:991:2"
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/Users/liaojinlong/Workspace/CPChain/cpchain-dapps-red-packet/contracts/interfaces/IRedPacket.sol",
+      "absolutePath": "project:/contracts/interfaces/IRedPacket.sol",
       "exportedSymbols": {
         "IRedPacket": [
-          879
+          899
         ]
       }
     },
@@ -791,7 +853,7 @@
             ".24"
           ]
         },
-        "id": 829,
+        "id": 845,
         "name": "PragmaDirective",
         "src": "0:24:2"
       },
@@ -807,10 +869,10 @@
           "documentation": null,
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            879
+            899
           ],
           "name": "IRedPacket",
-          "scope": 880
+          "scope": 900
         },
         "children": [
           {
@@ -827,7 +889,7 @@
                       "constant": false,
                       "indexed": true,
                       "name": "group_id",
-                      "scope": 843,
+                      "scope": 861,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -840,12 +902,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 830,
+                        "id": 846,
                         "name": "ElementaryTypeName",
                         "src": "75:4:2"
                       }
                     ],
-                    "id": 831,
+                    "id": 847,
                     "name": "VariableDeclaration",
                     "src": "75:21:2"
                   },
@@ -854,7 +916,7 @@
                       "constant": false,
                       "indexed": true,
                       "name": "packet_id",
-                      "scope": 843,
+                      "scope": 861,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -867,12 +929,12 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 832,
+                        "id": 848,
                         "name": "ElementaryTypeName",
                         "src": "98:4:2"
                       }
                     ],
-                    "id": 833,
+                    "id": 849,
                     "name": "VariableDeclaration",
                     "src": "98:22:2"
                   },
@@ -881,7 +943,7 @@
                       "constant": false,
                       "indexed": false,
                       "name": "sender",
-                      "scope": 843,
+                      "scope": 861,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -894,12 +956,12 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 834,
+                        "id": 850,
                         "name": "ElementaryTypeName",
                         "src": "122:7:2"
                       }
                     ],
-                    "id": 835,
+                    "id": 851,
                     "name": "VariableDeclaration",
                     "src": "122:14:2"
                   },
@@ -907,8 +969,35 @@
                     "attributes": {
                       "constant": false,
                       "indexed": false,
+                      "name": "bless",
+                      "scope": 861,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 852,
+                        "name": "ElementaryTypeName",
+                        "src": "138:6:2"
+                      }
+                    ],
+                    "id": 853,
+                    "name": "VariableDeclaration",
+                    "src": "138:12:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
                       "name": "amount",
-                      "scope": 843,
+                      "scope": 861,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -921,21 +1010,21 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 836,
+                        "id": 854,
                         "name": "ElementaryTypeName",
-                        "src": "138:7:2"
+                        "src": "152:7:2"
                       }
                     ],
-                    "id": 837,
+                    "id": 855,
                     "name": "VariableDeclaration",
-                    "src": "138:14:2"
+                    "src": "152:14:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "indexed": false,
                       "name": "count",
-                      "scope": 843,
+                      "scope": 861,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -948,21 +1037,21 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 838,
+                        "id": 856,
                         "name": "ElementaryTypeName",
-                        "src": "154:4:2"
+                        "src": "168:4:2"
                       }
                     ],
-                    "id": 839,
+                    "id": 857,
                     "name": "VariableDeclaration",
-                    "src": "154:10:2"
+                    "src": "168:10:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "indexed": false,
                       "name": "msg_sent",
-                      "scope": 843,
+                      "scope": 861,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -975,24 +1064,24 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 840,
+                        "id": 858,
                         "name": "ElementaryTypeName",
-                        "src": "166:4:2"
+                        "src": "180:4:2"
                       }
                     ],
-                    "id": 841,
+                    "id": 859,
                     "name": "VariableDeclaration",
-                    "src": "166:13:2"
+                    "src": "180:13:2"
                   }
                 ],
-                "id": 842,
+                "id": 860,
                 "name": "ParameterList",
-                "src": "74:106:2"
+                "src": "74:120:2"
               }
             ],
-            "id": 843,
+            "id": 861,
             "name": "EventDefinition",
-            "src": "53:128:2"
+            "src": "53:142:2"
           },
           {
             "attributes": {
@@ -1008,7 +1097,7 @@
                       "constant": false,
                       "indexed": true,
                       "name": "group_id",
-                      "scope": 853,
+                      "scope": 871,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1021,21 +1110,21 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 844,
+                        "id": 862,
                         "name": "ElementaryTypeName",
-                        "src": "206:4:2"
+                        "src": "220:4:2"
                       }
                     ],
-                    "id": 845,
+                    "id": 863,
                     "name": "VariableDeclaration",
-                    "src": "206:21:2"
+                    "src": "220:21:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "indexed": true,
                       "name": "packet_id",
-                      "scope": 853,
+                      "scope": 871,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1048,21 +1137,21 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 846,
+                        "id": 864,
                         "name": "ElementaryTypeName",
-                        "src": "229:4:2"
+                        "src": "243:4:2"
                       }
                     ],
-                    "id": 847,
+                    "id": 865,
                     "name": "VariableDeclaration",
-                    "src": "229:22:2"
+                    "src": "243:22:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "indexed": false,
                       "name": "receiver",
-                      "scope": 853,
+                      "scope": 871,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1075,21 +1164,21 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 848,
+                        "id": 866,
                         "name": "ElementaryTypeName",
-                        "src": "253:7:2"
+                        "src": "267:7:2"
                       }
                     ],
-                    "id": 849,
+                    "id": 867,
                     "name": "VariableDeclaration",
-                    "src": "253:16:2"
+                    "src": "267:16:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "indexed": false,
                       "name": "amount",
-                      "scope": 853,
+                      "scope": 871,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1102,24 +1191,24 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 850,
+                        "id": 868,
                         "name": "ElementaryTypeName",
-                        "src": "271:7:2"
+                        "src": "285:7:2"
                       }
                     ],
-                    "id": 851,
+                    "id": 869,
                     "name": "VariableDeclaration",
-                    "src": "271:14:2"
+                    "src": "285:14:2"
                   }
                 ],
-                "id": 852,
+                "id": 870,
                 "name": "ParameterList",
-                "src": "205:81:2"
+                "src": "219:81:2"
               }
             ],
-            "id": 853,
+            "id": 871,
             "name": "EventDefinition",
-            "src": "186:101:2"
+            "src": "200:101:2"
           },
           {
             "attributes": {
@@ -1135,7 +1224,7 @@
                       "constant": false,
                       "indexed": true,
                       "name": "packet_id",
-                      "scope": 859,
+                      "scope": 877,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1148,21 +1237,21 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 854,
+                        "id": 872,
                         "name": "ElementaryTypeName",
-                        "src": "305:4:2"
+                        "src": "319:4:2"
                       }
                     ],
-                    "id": 855,
+                    "id": 873,
                     "name": "VariableDeclaration",
-                    "src": "305:22:2"
+                    "src": "319:22:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "indexed": false,
                       "name": "remains",
-                      "scope": 859,
+                      "scope": 877,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1175,24 +1264,24 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 856,
+                        "id": 874,
                         "name": "ElementaryTypeName",
-                        "src": "329:7:2"
+                        "src": "343:7:2"
                       }
                     ],
-                    "id": 857,
+                    "id": 875,
                     "name": "VariableDeclaration",
-                    "src": "329:15:2"
+                    "src": "343:15:2"
                   }
                 ],
-                "id": 858,
+                "id": 876,
                 "name": "ParameterList",
-                "src": "304:41:2"
+                "src": "318:41:2"
               }
             ],
-            "id": 859,
+            "id": 877,
             "name": "EventDefinition",
-            "src": "292:54:2"
+            "src": "306:54:2"
           },
           {
             "attributes": {
@@ -1206,7 +1295,7 @@
               ],
               "name": "createRedPacket",
               "payable": true,
-              "scope": 879,
+              "scope": 899,
               "stateMutability": "payable",
               "superFunction": null,
               "visibility": "external"
@@ -1218,7 +1307,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "group_id",
-                      "scope": 868,
+                      "scope": 888,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1231,20 +1320,20 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 860,
+                        "id": 878,
                         "name": "ElementaryTypeName",
-                        "src": "611:4:2"
+                        "src": "625:4:2"
                       }
                     ],
-                    "id": 861,
+                    "id": 879,
                     "name": "VariableDeclaration",
-                    "src": "611:13:2"
+                    "src": "625:13:2"
                   },
                   {
                     "attributes": {
                       "constant": false,
                       "name": "count",
-                      "scope": 868,
+                      "scope": 888,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1257,19 +1346,45 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 862,
+                        "id": 880,
                         "name": "ElementaryTypeName",
-                        "src": "626:4:2"
+                        "src": "640:4:2"
                       }
                     ],
-                    "id": 863,
+                    "id": 881,
                     "name": "VariableDeclaration",
-                    "src": "626:10:2"
+                    "src": "640:10:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "bless",
+                      "scope": 888,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 882,
+                        "name": "ElementaryTypeName",
+                        "src": "652:6:2"
+                      }
+                    ],
+                    "id": 883,
+                    "name": "VariableDeclaration",
+                    "src": "652:12:2"
                   }
                 ],
-                "id": 864,
+                "id": 884,
                 "name": "ParameterList",
-                "src": "610:27:2"
+                "src": "624:41:2"
               },
               {
                 "children": [
@@ -1277,7 +1392,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 868,
+                      "scope": 888,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1290,24 +1405,24 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 865,
+                        "id": 885,
                         "name": "ElementaryTypeName",
-                        "src": "664:4:2"
+                        "src": "692:4:2"
                       }
                     ],
-                    "id": 866,
+                    "id": 886,
                     "name": "VariableDeclaration",
-                    "src": "664:4:2"
+                    "src": "692:4:2"
                   }
                 ],
-                "id": 867,
+                "id": 887,
                 "name": "ParameterList",
-                "src": "663:6:2"
+                "src": "691:6:2"
               }
             ],
-            "id": 868,
+            "id": 888,
             "name": "FunctionDefinition",
-            "src": "586:84:2"
+            "src": "600:98:2"
           },
           {
             "attributes": {
@@ -1321,7 +1436,7 @@
               ],
               "name": "grabRedPacket",
               "payable": false,
-              "scope": 879,
+              "scope": 899,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1333,7 +1448,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "packet_id",
-                      "scope": 873,
+                      "scope": 893,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1346,19 +1461,19 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 869,
+                        "id": 889,
                         "name": "ElementaryTypeName",
-                        "src": "776:4:2"
+                        "src": "804:4:2"
                       }
                     ],
-                    "id": 870,
+                    "id": 890,
                     "name": "VariableDeclaration",
-                    "src": "776:14:2"
+                    "src": "804:14:2"
                   }
                 ],
-                "id": 871,
+                "id": 891,
                 "name": "ParameterList",
-                "src": "775:16:2"
+                "src": "803:16:2"
               },
               {
                 "attributes": {
@@ -1367,14 +1482,14 @@
                   ]
                 },
                 "children": [],
-                "id": 872,
+                "id": 892,
                 "name": "ParameterList",
-                "src": "800:0:2"
+                "src": "828:0:2"
               }
             ],
-            "id": 873,
+            "id": 893,
             "name": "FunctionDefinition",
-            "src": "753:48:2"
+            "src": "781:48:2"
           },
           {
             "attributes": {
@@ -1388,7 +1503,7 @@
               ],
               "name": "refund",
               "payable": false,
-              "scope": 879,
+              "scope": 899,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "external"
@@ -1400,7 +1515,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "packet_id",
-                      "scope": 878,
+                      "scope": 898,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -1413,19 +1528,19 @@
                           "name": "uint",
                           "type": "uint256"
                         },
-                        "id": 874,
+                        "id": 894,
                         "name": "ElementaryTypeName",
-                        "src": "934:4:2"
+                        "src": "962:4:2"
                       }
                     ],
-                    "id": 875,
+                    "id": 895,
                     "name": "VariableDeclaration",
-                    "src": "934:14:2"
+                    "src": "962:14:2"
                   }
                 ],
-                "id": 876,
+                "id": 896,
                 "name": "ParameterList",
-                "src": "933:16:2"
+                "src": "961:16:2"
               },
               {
                 "attributes": {
@@ -1434,38 +1549,38 @@
                   ]
                 },
                 "children": [],
-                "id": 877,
+                "id": 897,
                 "name": "ParameterList",
-                "src": "958:0:2"
+                "src": "986:0:2"
               }
             ],
-            "id": 878,
+            "id": 898,
             "name": "FunctionDefinition",
-            "src": "918:41:2"
+            "src": "946:41:2"
           }
         ],
-        "id": 879,
+        "id": 899,
         "name": "ContractDefinition",
-        "src": "26:936:2"
+        "src": "26:964:2"
       }
     ],
-    "id": 880,
+    "id": 900,
     "name": "SourceUnit",
-    "src": "0:963:2"
+    "src": "0:991:2"
   },
   "compiler": {
     "name": "solc",
     "version": "0.4.25+commit.59dbf8f1.Linux.g++"
   },
   "networks": {},
-  "schemaVersion": "3.3.4",
-  "updatedAt": "2021-12-14T05:21:15.418Z",
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-14T06:11:06.968Z",
   "devdoc": {
     "methods": {}
   },
   "userdoc": {
     "methods": {
-      "createRedPacket(uint256,uint256)": {
+      "createRedPacket(uint256,uint256,string)": {
         "notice": "Create a red packet. Specify the group_id and the count of sub red packet. This function will send an application message in the group chat. Emits {CreateRedPacket} event Returns packet ID."
       },
       "grabRedPacket(uint256)": {

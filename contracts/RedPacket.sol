@@ -27,6 +27,7 @@ contract RedPacket is IRedPacket {
         bool existed;
         bool refunded;
         uint256 created_at;
+        string bless;
         mapping(address => bool) grabbed; // every address can only grab one packet
     }
 
@@ -111,11 +112,12 @@ contract RedPacket is IRedPacket {
      * Emits {CreateRedPacket} event
      * Returns packet ID.
      */
-    function createRedPacket(uint group_id, uint count) external payable onlyEnabled returns (uint) {
+    function createRedPacket(uint group_id, uint count, string bless) external payable onlyEnabled returns (uint) {
         require(msg.value <= upper, "The value can't be greater than the upper");
         require(msg.value >= 1 ether, "The value can't less than 1 CPC");
         require(count >= 1, "The count should greater than 1");
         require(count <= sub_packet_cnt_upper, "The count should less than the upper");
+        require(bytes(bless).length < 100, "Length of bless should less than 100");
         packet_seq += 1;
         packets[packet_seq] = Packet({
             group_id: group_id,
@@ -126,6 +128,7 @@ contract RedPacket is IRedPacket {
             remains: msg.value,
             existed: true,
             refunded: false,
+            bless: bless,
             created_at: block.timestamp
         });
         bool sent = false;
@@ -141,7 +144,7 @@ contract RedPacket is IRedPacket {
             groupchatInstance.sendMessage(group_id, message);
             sent = true;
         }
-        emit CreateRedPacket(group_id, packet_seq, msg.sender, msg.value, count, sent);
+        emit CreateRedPacket(group_id, packet_seq, msg.sender, bless, msg.value, count, sent);
     }
 
     /**
