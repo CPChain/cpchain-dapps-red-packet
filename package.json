@@ -1,4 +1,6 @@
 {
+    "name": "@cpchain-dapps/redpacket",
+    "version": "0.0.1",
     "scripts": {
         "build": "truffle build",
         "test": "truffle test",
