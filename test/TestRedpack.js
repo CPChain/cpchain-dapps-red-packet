@@ -28,7 +28,13 @@ contract("Redpack", (accounts) => {
 
         // Balance 校验
         for(let i = 0; i < 6; i++) {
-            console.log('Account', i, await getBalance(accounts[i]))
+            let grab = (await getBalance(accounts[i])) - web3.utils.toWei(String(100), "ether")
+            console.log('Account', i, grab, 'CPC')
         }
+    })
+    it("test uintToString", async () => {
+        const instance = await Redpacket.deployed()
+        console.log(JSON.parse(await instance.getMessageWithSeq(1)))
+        console.log(await instance.getMessageWithSeq(10000000))
     })
 })

@@ -60,20 +60,30 @@ contract RedPacket is IRedPacket {
         return string(aAB);
     }
 
-    function uintToString(uint v) internal pure returns (string str) {
-        uint maxlength = 100;
-        bytes memory reversed = new bytes(maxlength);
-        uint i = 0;
-        while (v != 0) {
-            uint remainder = v % 10;
-            v = v / 10;
-            reversed[i++] = byte(48 + remainder);
+    function uintToString(uint i) internal pure returns (string) {
+        if (i == 0) return "0";
+        uint j = i;
+        uint length;
+        while (j != 0){
+            length++;
+            j /= 10;
         }
-        bytes memory s = new bytes(i + 1);
-        for (uint j = 0; j <= i; j++) {
-            s[j] = reversed[i - j];
+        bytes memory bstr = new bytes(length);
+        uint k = length - 1;
+        while (i != 0){
+            bstr[k--] = byte(48 + i % 10);
+            i /= 10;
         }
-        str = string(s);
+        return string(bstr);
+    }
+
+    function getMessageWithSeq(uint seq) public pure returns (string) {
+        string memory _id = uintToString(seq);
+        string memory msg0 = "{\"message\":{\"seq\":";
+        string memory msg1 = "},\"type\":\"redpacket\",\"version\":\"2.1\"}";
+        string memory message = strConcat(msg0, _id);
+        message = strConcat(message, msg1);
+        return message;
     }
 
     function setGroupChat(address groupchat) public onlyOwner {
@@ -136,11 +146,7 @@ contract RedPacket is IRedPacket {
             require(groupchatInstance.has(group_id, msg.sender), "You are not in this group");
             require(!groupchatInstance.isBanned(group_id, msg.sender), "You have been banned");
             // message
-            string memory _id = uintToString(packet_seq);
-            string memory msg0 = "{\"message\":{\"seq\":";
-            string memory msg1 = "},\"type\":\"redpacket\",\"version\":\"2.1\"}";
-            string memory message = strConcat(msg0, _id);
-            message = strConcat(message, msg1);
+            string memory message = getMessageWithSeq(packet_seq);
             groupchatInstance.sendMessage(group_id, message);
             sent = true;
         }
