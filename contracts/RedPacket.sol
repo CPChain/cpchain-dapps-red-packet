@@ -112,7 +112,7 @@ contract RedPacket is IRedPacket {
     }
 
     function setSubPacketCntUpper(uint new_cnt) public onlyEnabled onlyOwner {
-        require(sub_packet_cnt_upper > 1, "The upper can't be less than 1");
+        require(new_cnt > 1, "The upper can't be less than 1"); 
         sub_packet_cnt_upper = new_cnt;
     }
 
@@ -191,6 +191,7 @@ contract RedPacket is IRedPacket {
         require(packets[packet_id].created_at + period <= block.timestamp, "Your red packet is still locked");
         require(packets[packet_id].sender == msg.sender, "You are not the sender of the packet");
         msg.sender.transfer(packets[packet_id].remains);
+        emit Refund(packet_id, packets[packet_id].remains);
         packets[packet_id].remains = 0;
         packets[packet_id].refunded = true;
     }
