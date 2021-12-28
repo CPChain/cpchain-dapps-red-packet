@@ -1,6 +1,6 @@
 # RedPacket Contrat Test
 
-# CreateRedPacket
+## CreateRedPacket
 
 |#|Name|Expect|Done|
 |---|----|------|---|
@@ -25,7 +25,7 @@
 |19|设置 sub_packet_cnt_upper = 2 |Success|Done|
 
 
-# GrabRedPacket
+## GrabRedPacket
 
 |#|Name|Expect|Done|
 |---|----|------|---|
@@ -34,7 +34,7 @@
 |3|设置 红包不存在|Fail|Done|
 |4|设置 红包已经被抢过了|Fail|Done|
 
-# Refund
+## Refund
 
 |#|Name|Expect|Done|
 |---|----|------|---|
@@ -44,6 +44,4 @@
 |4|设置 红包不存在|Fail|Done|
 |5|设置 红包不属于你|Fail|Done|
 |6|设置 红包时间未到|Fail|Done|
-|6|设置 红包退款后再抢|Fail|Done|
-
-
+|7|设置 红包退款后再抢|Fail|Done|
