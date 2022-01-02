@@ -24,7 +24,6 @@
 |18|设置 sub_packet_cnt_upper = 1 |Fail|Done|
 |19|设置 sub_packet_cnt_upper = 2 |Success|Done|
 
-
 ## GrabRedPacket
 
 |#|Name|Expect|Done|
